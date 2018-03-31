@@ -1,0 +1,47 @@
+# Compile of adder.v was successful.
+# Compile of flip_flop.v was successful.
+# Compile of IDCT_test.v was successful.
+# Compile of multi_x36.v was successful.
+# Compile of multi_x64.v was successful.
+# Compile of multi_x83.v was successful.
+# Compile of pos_to_neg.v was successful.
+# Compile of testbench.v was successful.
+# 8 compiles, 0 failed with no errors. 
+vsim -gui -novopt work.IDCT_test work.testbench
+# vsim -gui -novopt work.IDCT_test work.testbench 
+# Refreshing E:/code/ic/work.IDCT_test
+# Loading work.IDCT_test
+# Refreshing E:/code/ic/work.x64
+# Loading work.x64
+# Refreshing E:/code/ic/work.x83
+# Loading work.x83
+# Refreshing E:/code/ic/work.x36
+# Loading work.x36
+# Refreshing E:/code/ic/work.ff
+# Loading work.ff
+# Refreshing E:/code/ic/work.adder
+# Loading work.adder
+# Refreshing E:/code/ic/work.testbench
+# Loading work.testbench
+add wave -position end  sim:/IDCT_test/adder_out_1
+add wave -position end  sim:/IDCT_test/adder_out_2
+add wave -position end  sim:/IDCT_test/clk
+add wave -position end  sim:/IDCT_test/d_in_1
+add wave -position end  sim:/IDCT_test/d_in_2
+add wave -position end  sim:/IDCT_test/d_in_3
+add wave -position end  sim:/IDCT_test/d_in_4
+add wave -position end  sim:/IDCT_test/d_out
+add wave -position end  sim:/IDCT_test/ff_out_1
+add wave -position end  sim:/IDCT_test/ff_out_2
+add wave -position end  sim:/IDCT_test/ff_out_3
+add wave -position end  sim:/IDCT_test/multi_out_1
+add wave -position end  sim:/IDCT_test/multi_out_2
+add wave -position end  sim:/IDCT_test/multi_out_3
+add wave -position end  sim:/IDCT_test/multi_out_4
+add wave -position end  sim:/IDCT_test/reset
+run
+restart -f
+add wave -position end  sim:/testbench/IDCT/multi1/data_in
+add wave -position end  sim:/testbench/IDCT/multi1/data_out
+add wave -position 1  sim:/testbench/IDCT/ff1/clk
+run 

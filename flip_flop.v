@@ -7,10 +7,10 @@ module ff(data_in, data_out, clk, reset);
     input clk;
     input reset;
 
-    input [7:0] data_in;
+    input [23:0] data_in;
     output data_out;
-	
-	reg [7:0] data_out;
+
+	  reg [23:0] data_out;
 
     always @ (posedge clk or posedge reset) begin
         if(reset) data_out <= 0;

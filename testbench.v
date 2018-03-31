@@ -9,12 +9,12 @@ module testbench;
 reg clk;
 reg reset;
 
-reg [7:0] d_in_1;
-reg [7:0] d_in_2;
-reg [7:0] d_in_3;
-reg [7:0] d_in_4;
+reg [15:0] d_in_1;
+reg [15:0] d_in_2;
+reg [15:0] d_in_3;
+reg [15:0] d_in_4;
 
-wire [7:0] d_out;
+wire [23:0] d_out;
 
 IDCT_test IDCT(.d_in_1(d_in_1),
                .d_in_2(d_in_2),
@@ -33,11 +33,11 @@ initial begin
         reset <= 0;
         d_in_1 <= 1;
      end
-	 
+
   #5 begin
 	 clk <= ~clk;
 	 end
-	 
+
   #5 begin
         clk <= ~clk;
         d_in_1 <= 21;
@@ -45,11 +45,11 @@ initial begin
         //d_in_3 <= ;
         //d_in_4 <= ;
      end
-	 
+
   #5 begin
 	 clk <= ~clk;
 	 end
-	 
+
   #5 begin
         clk <= ~clk;
         d_in_1 <= 67;
@@ -61,7 +61,7 @@ initial begin
   #5 begin
 	 clk <= ~clk;
 	 end
-	 
+
   #5 begin
        clk <= ~clk;
        d_in_1 <= 67;
@@ -69,11 +69,11 @@ initial begin
        d_in_3 <= 245;
        d_in_4 <= 1;
      end
-	 
+
   #5 begin
 	 clk <= ~clk;
 	 end
-	 
+
   #5 begin
        clk <= ~clk;
        d_in_1 <= 78;
@@ -85,7 +85,7 @@ initial begin
   #5 begin
 	 clk <= ~clk;
 	 end
-	 
+
   #5 begin
        clk <= ~clk;
        d_in_1 <= 86;
@@ -97,7 +97,7 @@ initial begin
   #5 begin
 	 clk <= ~clk;
 	 end
-	 
+
   #5 begin
        clk <= ~clk;
        d_in_1 <= 98;
