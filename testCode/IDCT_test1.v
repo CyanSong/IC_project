@@ -42,11 +42,13 @@ module IDCT_test1 ( d_in_1, d_in_2, d_in_3, d_in_4,
       ff25 ff13(d_in_4, d_out_4, clk, reset);
 
 
+      assign multi_out_1 = d_in_1 * 64;
+      assign multi_out_2 = d_in_2 * 83;
+      assign multi_out_3 = d_in_3 * 64;
+      assign multi_out_4 = d_in_4 * 36;
+      
 
-      x64 multi1(d_in_1, multi_out_1);
-      x83 multi2(d_in_2, multi_out_2);
-      x64 multi3(d_in_3, multi_out_3);
-      x36 multi4(d_in_4, multi_out_4);
+
 
       ff25 ff1(multi_out_1, ff_out_1, clk, reset);
       ff25 ff2(adder_out_1, ff_out_2, clk, reset);
