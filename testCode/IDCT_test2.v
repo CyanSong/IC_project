@@ -60,9 +60,9 @@ module IDCT_test2 ( d_in_1, d_in_2, d_in_3, d_in_4,
       ff25 ff2(adder_out_1, ff_out_2, clk, reset);
       ff25 ff3(adder_out_2, ff_out_3, clk, reset);
 
-      adder adder1(multi_out_2, ff_out_1, adder_out_1);
-      adder adder2(multi_out_3, ff_out_2, adder_out_2);
-      adder adder3(multi_out_4, ff_out_3, d_out_temp);
+      assign adder_out_1 = multi_out_2 + ff_out_1; 
+      assign adder_out_2 = multi_out_3 + ff_out_2; 
+      assign d_out_temp = multi_out_4 + ff_out_3; 
 
       always @(posedge clk or posedge reset) begin
           if(reset) d_out <= 25'd0;
