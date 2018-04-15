@@ -4,65 +4,70 @@
 
 module IDCT_test3 ( d_in_1, d_in_2, d_in_3, d_in_4,
                     reset, clk,
-                    d_out, d_out_1, d_out_2, d_out_3, d_out_4);
+                    d_out, d_out_1, d_out_2, d_out_3, d_out_4,
+                    shift, add);
 
-      input [15:0] d_in_1;
-      input [15:0] d_in_2;
-      input [15:0] d_in_3;
-      input [15:0] d_in_4;
       input reset;
       input clk;
-      output [23:0] d_out;
-      output [15:0] d_out_1;
-      output [15:0] d_out_2;
-      output [15:0] d_out_3;
-      output [15:0] d_out_4;
 
-      wire [15:0] tmp1;
-      wire [15:0] tmp2;
-      wire [15:0] tmp3;
-      wire [15:0] tmp4;
-      wire [15:0] tmp5;
-      wire [15:0] tmp6;
+      input signed [24:0] d_in_1;
+      input signed [24:0] d_in_2;
+      input signed [24:0] d_in_3;
+      input signed [24:0] d_in_4;
+      input [3:0] shift;
+      input signed [24:0] add;
+
+      output reg signed [24:0] d_out;
+
+      output signed [24:0] d_out_1;
+      output signed [24:0] d_out_2;
+      output signed [24:0] d_out_3;
+      output signed [24:0] d_out_4;
+
+      wire signed [24:0] d_out_temp;
+      wire signed [24:0] multi_out_1;
+      wire signed [24:0] multi_out_2;
+      wire signed [24:0] multi_out_3;
+      wire signed [24:0] multi_out_4;
+
+      wire signed [24:0] ff_out_1;
+      wire signed [24:0] ff_out_2;
+      wire signed [24:0] ff_out_3;
+
+      wire signed [24:0] adder_out_1;
+      wire signed [24:0] adder_out_2;
 
 
-      ff ff4(d_in_1, d_out_1, clk,reset);
-      
-      ff ff5(d_in_2, tmp1, clk, reset);
-      ff ff6(tmp1, d_out_2, clk, reset);
-      
-      ff ff7(d_in_3, tmp2, clk, reset);
-      ff ff8(tmp2, tmp3, clk, reset);
-      ff ff9(tmp3, d_out_3, clk, reset);
-      
-      ff ff10(d_in_4, tmp4, clk, reset);
-      ff ff11(tmp4, tmp5, clk, reset);
-      ff ff12(tmp5, tmp6, clk, reset);
-      ff ff13(tmp6, d_out_4, clk, reset);
 
-      wire [23:0] multi_out_1;
-      wire [23:0] multi_out_2;
-      wire [23:0] multi_out_3;
-      wire [23:0] multi_out_4;
+     ff25 ff4(d_in_1, d_out_1, clk,reset);
 
-      wire [23:0] ff_out_1;
-      wire [23:0] ff_out_2;
-      wire [23:0] ff_out_3;
 
-      wire [23:0] adder_out_1;
-      wire [23:0] adder_out_2;
+      ff25 ff6(d_in_2, d_out_2, clk, reset);
+
+
+      ff25 ff9(d_in_3, d_out_3, clk, reset);
+
+
+      ff25 ff13(d_in_4, d_out_4, clk, reset);
+
+
 
       x64 multi1(d_in_1, multi_out_1);
       xn36 multi2(d_in_2, multi_out_2);
       xn64 multi3(d_in_3, multi_out_3);
       x83 multi4(d_in_4, multi_out_4);
 
-      ff ff1(multi_out_1, ff_out_1, clk, reset);
-      ff ff2(adder_out_1, ff_out_2, clk, reset);
-      ff ff3(adder_out_2, ff_out_3, clk, reset);
+      ff25 ff1(multi_out_1, ff_out_1, clk, reset);
+      ff25 ff2(adder_out_1, ff_out_2, clk, reset);
+      ff25 ff3(adder_out_2, ff_out_3, clk, reset);
 
       adder adder1(multi_out_2, ff_out_1, adder_out_1);
       adder adder2(multi_out_3, ff_out_2, adder_out_2);
-      adder adder3(multi_out_4, ff_out_3, d_out);
+      adder adder3(multi_out_4, ff_out_3, d_out_temp);
+
+      always @(posedge clk or posedge reset) begin
+          if(reset) d_out <= 25'd0;
+          else d_out <= (d_out_temp + add ) >>> shift;
+      end
 
 endmodule

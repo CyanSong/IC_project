@@ -9,102 +9,232 @@ module testbench;
 reg clk;
 reg reset;
 
-reg [15:0] d_in_1;
-reg [15:0] d_in_2;
-reg [15:0] d_in_3;
-reg [15:0] d_in_4;
+reg signed [24:0] d_in_1;
+reg signed [24:0] d_in_2;
+reg signed [24:0] d_in_3;
+reg signed [24:0] d_in_4;
 
-wire [23:0] d_out;
+wire signed [24:0] d_out_1;
+wire signed [24:0] d_out_2;
+wire signed [24:0] d_out_3;
+wire signed [24:0] d_out_4;
 
-IDCT_test IDCT(.d_in_1(d_in_1),
+IDCT_whole IDCT(.d_in_1(d_in_1),
                .d_in_2(d_in_2),
                .d_in_3(d_in_3),
                .d_in_4(d_in_4),
                .reset(reset),
                .clk(clk),
-               .d_out(d_out));
+               .d_out_1(d_out_1),
+               .d_out_2(d_out_2),
+               .d_out_3(d_out_3),
+               .d_out_4(d_out_4)
+               );
 initial begin
-  begin
-      reset <= 1;
-      clk <= 1;
+
+
+ begin
+     reset = 1;
+ end
+
+ #20 begin
+  clk = 0;
+  reset = 0;
+ end
+
+
+ #19 begin
+     clk = ~clk;
   end
-  #5 begin
-        clk <= ~clk;
-        reset <= 0;
-        d_in_1 <= 1;
-     end
+ #1 begin
+     d_in_1 = -720;
+     d_in_2 = 0;
+     d_in_3 = 0;
+     d_in_4 = 0;
+  end
 
-  #5 begin
-	 clk <= ~clk;
+ #19 begin
+	 clk = ~clk;
 	 end
 
-  #5 begin
-        clk <= ~clk;
-        d_in_1 <= 21;
-        d_in_2 <= 1;
-        //d_in_3 <= ;
-        //d_in_4 <= ;
-     end
+ #20 begin
+       clk = ~clk;
+   end
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 1440;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
 
-  #5 begin
-	 clk <= ~clk;
+ #19 begin
+	 clk = ~clk;
 	 end
 
-  #5 begin
-        clk <= ~clk;
-        d_in_1 <= 67;
-        d_in_2 <= 39;
-        d_in_3 <= 1;
-        //d_in_4 <= 290;
-     end
+ #20 begin
+       clk = ~clk;
+   end
 
-  #5 begin
-	 clk <= ~clk;
+ #1 begin
+   d_in_1 = 0;
+   d_in_2 = 0;
+   d_in_3 = -720;
+   d_in_4 = 0;
+ end
+
+ #19 begin
+	 clk = ~clk;
 	 end
 
-  #5 begin
-       clk <= ~clk;
-       d_in_1 <= 67;
-       d_in_2 <= 98;
-       d_in_3 <= 245;
-       d_in_4 <= 1;
-     end
+ #20 begin
+      clk = ~clk;
+    end
 
-  #5 begin
-	 clk <= ~clk;
+ #1 begin
+     d_in_1 = 0;
+     d_in_2 = 0;
+     d_in_3 = 0;
+     d_in_4 = -720;
+ end
+
+ #19 begin
+	 clk = ~clk;
 	 end
 
-  #5 begin
-       clk <= ~clk;
-       d_in_1 <= 78;
-       d_in_2 <= 85;
-       d_in_3 <= 45;
-       d_in_4 <= 23;
-     end
+ #20 begin
+      clk = ~clk;
+    end
+  #1 begin
+     d_in_1 = 0;
+     d_in_2 = 0;
+     d_in_3 = 0;
+     d_in_4 = 0;
+  end
 
-  #5 begin
-	 clk <= ~clk;
+
+ #19 begin
+	 clk = ~clk;
 	 end
 
-  #5 begin
-       clk <= ~clk;
-       d_in_1 <= 86;
-       d_in_2 <= 53;
-       d_in_3 <= 51;
-       d_in_4 <= 39;
-     end
+ #20 begin
+      clk = ~clk;
 
-  #5 begin
-	 clk <= ~clk;
-	 end
+    end
+    #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+    end
 
-  #5 begin
-       clk <= ~clk;
-       d_in_1 <= 98;
-       d_in_2 <= 56;
-       d_in_3 <= 53;
-       d_in_4 <= 36;
-     end
+
+
+ #19 begin
+	 clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+     d_in_1 = 0;
+     d_in_2 = 0;
+     d_in_3 = 0;
+     d_in_4 = 0;
+  end
+
+ #19 begin
+   clk = ~clk;
+   end
+
+ #20 begin
+       clk = ~clk;
+   end
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
+ #19 begin
+   clk = ~clk;
+   end
+
+ #20 begin
+       clk = ~clk;
+   end
+
+ #1 begin
+   d_in_1 = 0;
+   d_in_2 = 0;
+   d_in_3 = 0;
+   d_in_4 = 0;
+ end
+
+ #19 begin
+   clk = ~clk;
+   end
+
+ #20 begin
+      clk = ~clk;
+    end
+
+ #1 begin
+     d_in_1 = 0;
+     d_in_2 = 0;
+     d_in_3 = 0;
+     d_in_4 = 0;
+ end
+
+ #19 begin
+   clk = ~clk;
+   end
+
+ #20 begin
+      clk = ~clk;
+    end
+  #1 begin
+     d_in_1 = 0;
+     d_in_2 = 0;
+     d_in_3 = 0;
+     d_in_4 = 0;
+  end
+
+
+ #19 begin
+   clk = ~clk;
+   end
+
+ #20 begin
+      clk = ~clk;
+
+    end
+    #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+    end
+
+
+
+ #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
 end
 
 endmodule
