@@ -19,16 +19,16 @@ wire signed [24:0] d_out_6;
 wire signed [24:0] d_out_7;
 wire signed [24:0] d_out_8;
 
-IDCT_whole IDCT(.d_in_1(d_in_1),
-               .d_in_2(d_in_2),
-               .d_in_3(d_in_3),
-               .d_in_4(d_in_4),
+IDCT_whole IDCT(.d_in_1_ori(d_in_1),
+               .d_in_2_ori(d_in_2),
+               .d_in_3_ori(d_in_3),
+               .d_in_4_ori(d_in_4),
                .reset(reset),
                .clk(clk),
-               .d_out_5(d_out_5),
-               .d_out_6(d_out_6),
-               .d_out_7(d_out_7),
-               .d_out_8(d_out_8)
+               .d_out_5_fin(d_out_5),
+               .d_out_6_fin(d_out_6),
+               .d_out_7_fin(d_out_7),
+               .d_out_8_fin(d_out_8)
                );
 initial begin
 
@@ -48,7 +48,7 @@ initial begin
   end
  #1 begin
      d_in_1 = 1440;
-     d_in_2 = 0;
+     d_in_2 = -720;
      d_in_3 = 0;
      d_in_4 = 0;
   end
@@ -62,7 +62,7 @@ initial begin
    end
  #1 begin
        d_in_1 = 0;
-       d_in_2 = -720;
+       d_in_2 = 0;
        d_in_3 = 0;
        d_in_4 = 0;
    end
@@ -105,10 +105,10 @@ initial begin
       clk = ~clk;
     end
   #1 begin
-     d_in_1 = 0;
-     d_in_2 = 0;
-     d_in_3 = 0;
-     d_in_4 = 0;
+     d_in_1 = -720;
+     d_in_2 = 1440;
+     d_in_3 = -720;
+     d_in_4 = -720;
   end
 
 
@@ -269,6 +269,149 @@ initial begin
        d_in_3 = 0;
        d_in_4 = 0;
    end
+
+       #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
+
+    #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
+
+    #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
+
+    #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
+    #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
+
+    #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
+
+    #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
+
+    #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
+
+    #19 begin
+   clk = ~clk;
+ end
+
+ #20 begin
+      clk = ~clk;
+ end
+
+ #1 begin
+       d_in_1 = 0;
+       d_in_2 = 0;
+       d_in_3 = 0;
+       d_in_4 = 0;
+   end
+
 
 
 

@@ -1,35 +1,61 @@
 //IDCT whole
-module IDCT8_whole( data_in_1, data_in_2, data_in_3, data_in_4,
-                    data_in_5, data_in_6, data_in_7, data_in_8,
+module IDCT8_whole( data_in_1_ori, data_in_2_ori, data_in_3_ori, data_in_4_ori,
+                    data_in_5_ori, data_in_6_ori, data_in_7_ori, data_in_8_ori,
 
                     reset, clk,
 
-                    data_out_1, data_out_2, data_out_3, data_out_4,
-					          data_out_5, data_out_6, data_out_7, data_out_8);
+                    data_out_1_fin, data_out_2_fin, data_out_3_fin, data_out_4_fin,
+					          data_out_5_fin, data_out_6_fin, data_out_7_fin, data_out_8_fin);
 
         input reset;
         input clk;
 
-        input signed [24:0] data_in_1;
-        input signed [24:0] data_in_2;
-        input signed [24:0] data_in_3;
-        input signed [24:0] data_in_4;
-        input signed [24:0] data_in_5;
-        input signed [24:0] data_in_6;
-        input signed [24:0] data_in_7;
-        input signed [24:0] data_in_8;
+        input signed [24:0] data_in_1_ori;
+        input signed [24:0] data_in_2_ori;
+        input signed [24:0] data_in_3_ori;
+        input signed [24:0] data_in_4_ori;
+        input signed [24:0] data_in_5_ori;
+        input signed [24:0] data_in_6_ori;
+        input signed [24:0] data_in_7_ori;
+        input signed [24:0] data_in_8_ori;
 
 
-        output wire signed [24:0] data_out_1;
-        output wire signed [24:0] data_out_2;
-        output wire signed [24:0] data_out_3;
-        output wire signed [24:0] data_out_4;
-        output wire signed [24:0] data_out_5;
-        output wire signed [24:0] data_out_6;
-        output wire signed [24:0] data_out_7;
-        output wire signed [24:0] data_out_8;
+        output wire signed [24:0] data_out_1_fin;
+        output wire signed [24:0] data_out_2_fin;
+        output wire signed [24:0] data_out_3_fin;
+        output wire signed [24:0] data_out_4_fin;
+        output wire signed [24:0] data_out_5_fin;
+        output wire signed [24:0] data_out_6_fin;
+        output wire signed [24:0] data_out_7_fin;
+        output wire signed [24:0] data_out_8_fin;
 		
-		wire unsigned [3:0]  shift_col;
+		
+        wire signed [24:0] data_in_1;
+        wire signed [24:0] data_in_2;
+        wire signed [24:0] data_in_3;
+        wire signed [24:0] data_in_4;
+        wire signed [24:0] data_in_5;
+        wire signed [24:0] data_in_6;
+        wire signed [24:0] data_in_7;
+        wire signed [24:0] data_in_8;
+
+
+       wire signed [24:0] data_out_1;
+       wire signed [24:0] data_out_2;
+       wire signed [24:0] data_out_3;
+       wire signed [24:0] data_out_4;
+       wire signed [24:0] data_out_5;
+       wire signed [24:0] data_out_6;
+       wire signed [24:0] data_out_7;
+       wire signed [24:0] data_out_8;
+
+
+
+
+
+
+
+    wire unsigned [3:0]  shift_col;
 		wire signed   [24:0] add_col;
 		wire unsigned [3:0]  shift_row;
 		wire signed   [24:0] add_row;
@@ -70,6 +96,30 @@ module IDCT8_whole( data_in_1, data_in_2, data_in_3, data_in_4,
         wire signed [24:0] data_in_temp7;
         wire signed [24:0] data_in_temp8;
 		
+      assign data_in_1 = data_in_1_ori;
+      ff25 module29(.data_in(data_in_2_ori), .data_out(data_in_2), .clk(clk), .reset(reset));
+      delay2 module30(.data_in(data_in_3_ori), .data_out(data_in_3), .clk(clk), .reset(reset));
+      delay3 module31(.data_in(data_in_4_ori), .data_out(data_in_4), .clk(clk), .reset(reset));
+      delay4 module32(.data_in(data_in_5_ori), .data_out(data_in_5), .clk(clk), .reset(reset));
+      delay5 module33(.data_in(data_in_6_ori), .data_out(data_in_6), .clk(clk), .reset(reset));
+      delay6 module34(.data_in(data_in_7_ori), .data_out(data_in_7), .clk(clk), .reset(reset));
+      delay7 module35(.data_in(data_in_8_ori), .data_out(data_in_8), .clk(clk), .reset(reset));
+      
+      assign data_out_8_fin = data_out_8;
+      ff25 module36(.data_in(data_out_7), .data_out(data_out_7_fin), .clk(clk), .reset(reset));
+      delay2 module37(.data_in(data_out_6), .data_out(data_out_6_fin), .clk(clk), .reset(reset));
+      delay3 module38(.data_in(data_out_5), .data_out(data_out_5_fin), .clk(clk), .reset(reset));
+      delay4 module39(.data_in(data_out_4), .data_out(data_out_4_fin), .clk(clk), .reset(reset));
+      delay5 module40(.data_in(data_out_3), .data_out(data_out_3_fin), .clk(clk), .reset(reset));
+      delay6 module41(.data_in(data_out_2), .data_out(data_out_2_fin), .clk(clk), .reset(reset));
+      delay7 module42(.data_in(data_out_1), .data_out(data_out_1_fin), .clk(clk), .reset(reset));
+      
+
+
+
+
+
+
 		assign data_in_temp1 = (counter==1) ? data_out_temp1 :
 							   (counter==2) ? data_out_temp2 :
 							   (counter==3) ? data_out_temp3 : 
@@ -135,9 +185,9 @@ module IDCT8_whole( data_in_1, data_in_2, data_in_3, data_in_4,
 							   (counter==6) ? data_out_temp7 : data_out_temp8;
 							   
 		assign shift_col = 4'd7;
-		assign add_col = 24'd64;
+		assign add_col = 25'd64;
 		assign shift_row = 4'd12;
-		assign add_row = 24'd2048;
+		assign add_row = 25'd2048;
 		
         always @ ( posedge clk or posedge reset) begin
             if(reset) counter <= 0;

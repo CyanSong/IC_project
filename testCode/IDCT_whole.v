@@ -2,32 +2,42 @@
 //test
 //date 2018-03-20
 
-module IDCT_whole ( d_in_1, d_in_2, d_in_3, d_in_4,
+module IDCT_whole ( d_in_1_ori, d_in_2_ori, d_in_3_ori, d_in_4_ori,
                     reset, clk,
-                    d_out_5, d_out_6, d_out_7, d_out_8);
+                    d_out_5_fin, d_out_6_fin, d_out_7_fin, d_out_8_fin);
 
       input reset;
       input clk;
 
-      input signed [24:0] d_in_1;
-      input signed [24:0] d_in_2;
-      input signed [24:0] d_in_3;
-      input signed [24:0] d_in_4;
+      input signed [24:0] d_in_1_ori;
+      input signed [24:0] d_in_2_ori;
+      input signed [24:0] d_in_3_ori;
+      input signed [24:0] d_in_4_ori;
 
-      output wire signed [24:0] d_out_5;
-      output wire signed [24:0] d_out_6;
-      output wire signed [24:0] d_out_7;
-      output wire signed [24:0] d_out_8;
+      output wire signed [24:0] d_out_5_fin;
+      output wire signed [24:0] d_out_6_fin;
+      output wire signed [24:0] d_out_7_fin;
+      output wire signed [24:0] d_out_8_fin;
+
+      wire signed [24:0] d_in_1;
+      wire signed [24:0] d_in_2;
+      wire signed [24:0] d_in_3;
+      wire signed [24:0] d_in_4;
+      
+      wire signed [24:0] d_out_1;
+      wire signed [24:0] d_out_2;
+      wire signed [24:0] d_out_3;
+      wire signed [24:0] d_out_4;
 
       wire signed [24:0] d_in_5;
       wire signed [24:0] d_in_6;
       wire signed [24:0] d_in_7;
       wire signed [24:0] d_in_8;
 
-      wire signed [24:0] d_out_1;
-      wire signed [24:0] d_out_2;
-      wire signed [24:0] d_out_3;
-      wire signed [24:0] d_out_4;
+      wire signed [24:0] d_out_5;
+      wire signed [24:0] d_out_6;
+      wire signed [24:0] d_out_7;
+      wire signed [24:0] d_out_8;
       
       wire signed [24:0] int1_2_1;
       wire signed [24:0] int1_2_2;
@@ -63,6 +73,19 @@ module IDCT_whole ( d_in_1, d_in_2, d_in_3, d_in_4,
 
 
       reg unsigned [1:0] counter;
+
+
+      assign d_in_1 = d_in_1_ori;
+      ff25 module9(.data_in(d_in_2_ori), .data_out(d_in_2), .clk(clk), .reset(reset));
+      delay2 module10(.data_in(d_in_3_ori), .data_out(d_in_3), .clk(clk), .reset(reset));
+      delay3 module11(.data_in(d_in_4_ori), .data_out(d_in_4), .clk(clk), .reset(reset));
+      
+      assign d_out_8_fin = d_out_8;
+      ff25 module12(.data_in(d_out_7), .data_out(d_out_7_fin), .clk(clk), .reset(reset));
+      delay2 module13(.data_in(d_out_6), .data_out(d_out_6_fin), .clk(clk), .reset(reset));
+      delay3 module14(.data_in(d_out_5), .data_out(d_out_5_fin), .clk(clk), .reset(reset));
+      
+
 
 
       always @ ( posedge clk or posedge reset ) begin
