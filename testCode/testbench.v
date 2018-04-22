@@ -34,17 +34,25 @@ initial begin
 
 
  begin
-     reset = 1;
+     reset = 0;
+     clk =  0;
  end
 
  #20 begin
-  clk = 0;
-  reset = 0;
+  clk = 1;
+  reset = 1;
  end
+
+#20 begin
+  clk = 0;
+  
+ end
+
 
 
  #19 begin
      clk = ~clk;
+     reset = 0;
   end
  #1 begin
      d_in_1 = 1440;

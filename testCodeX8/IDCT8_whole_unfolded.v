@@ -190,7 +190,7 @@ module IDCT8_whole( data_in_1_ori, data_in_2_ori, data_in_3_ori, data_in_4_ori,
 		assign add_row = 25'd2048;
 		
         always @ ( posedge clk or posedge reset) begin
-            if(reset) counter <= 0;
+            if(reset) counter = 0;
 
             else if(counter == 8) counter <= 1;
 

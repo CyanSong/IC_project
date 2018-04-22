@@ -86,6 +86,11 @@ module IDCT_whole ( d_in_1_ori, d_in_2_ori, d_in_3_ori, d_in_4_ori,
       delay3 module14(.data_in(d_out_5), .data_out(d_out_5_fin), .clk(clk), .reset(reset));
       
 
+      // delay4 module12(.data_in(d_out_8), .data_out(d_out_8_fin), .clk(clk), .reset(reset));
+      // delay5 module13(.data_in(d_out_7), .data_out(d_out_7_fin), .clk(clk), .reset(reset));
+      // delay6 module14(.data_in(d_out_6), .data_out(d_out_6_fin), .clk(clk), .reset(reset));
+      // delay7 module15(.data_in(d_out_5), .data_out(d_out_5_fin), .clk(clk), .reset(reset));
+
 
 
       always @ ( posedge clk or posedge reset ) begin

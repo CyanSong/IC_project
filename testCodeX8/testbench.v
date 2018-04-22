@@ -49,19 +49,26 @@ IDCT8_whole IDCT(.data_in_1_ori(data_in_1),
 initial begin
 
 
+
  begin
+     reset = 0;
+     clk =  0;
+ end
+
+ #20 begin
+  clk = 1;
   reset = 1;
  end
 
-
- #20 begin
+#20 begin
   clk = 0;
-  reset = 0;
-  end
+
+ end
 
 
  #19 begin
      clk = ~clk;
+       reset = 0;
   end
  #1 begin
      data_in_1 = -8976;
