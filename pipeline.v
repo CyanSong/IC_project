@@ -172,12 +172,6 @@ always @ ( posedge clk or posedge reset ) begin
       count_in=-1;
 
 
-
-
-
-
-
-
   end
 
 end
